@@ -7,7 +7,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 
 class UsuarioFSService: DataService<Usuario> {
 
-    val usuarios = DBService.getFirestoreDB()
+    val usuarios = DB.firestore
 
     /**
      * Retorna um único item, através de seu ID
@@ -17,27 +17,23 @@ class UsuarioFSService: DataService<Usuario> {
     /**
      * Cria um novo item
      */
-    override fun novo( obj:Usuario ) = usuarios.document(obj.id!!).set(hashMapOf("nome" to obj.nome, "criacao" to Timestamp.now()))
+    override fun novo( obj:Usuario ):Task<Void> = usuarios.document(obj.id!!).set(hashMapOf("nome" to obj.nome, "criacao" to Timestamp.now()))
 
     /**
      * Atualiza um item
      */
-    override fun atualizar( obj:Usuario ): Any? {
-        TODO("Not yet implemented")
-    }
+    override fun atualizar( obj:Usuario ):Task<Void> = usuarios.document(obj.id!!).update("nome", obj.nome )
 
     /**
      * Deleta um item da coleção
      */
-    override fun deletar( id:String ): Any? {
-        TODO("Not yet implemented")
-    }
+    override fun deletar( id:String ):Task<Void> = usuarios.document(id).delete()
 
     /**
      * Retorna todos os itens
      */
-    override fun retornarTodos(): Any? {
-        TODO("Not yet implemented")
+    override fun retornarTodos():Any? {
+        return null // Não há razão para retornar todos os usuários
     }
 
 

@@ -5,11 +5,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class DBService {
+class DB {
 
     companion object {
 
-        fun getFirestoreDB(): CollectionReference = Firebase.firestore.collection("mystuff")
+        val firestore
+            get():CollectionReference = Firebase.firestore.collection("mystuff")
 
     }
 

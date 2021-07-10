@@ -7,9 +7,9 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 
-class ComodoFSService( usuario: Usuario ):DataService<Comodo> {
+class ComodoFSService( usuario:Usuario ):DataService<Comodo> {
 
-    val colecaoComodos = DBService.getFirestoreDB().document(usuario.id!!).collection("comodos")
+    val colecaoComodos = DB.firestore.document(usuario.id!!).collection("comodos")
 
     /**
      * Retorna todos os itens salvos na coleção
