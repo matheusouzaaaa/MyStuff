@@ -2,4 +2,10 @@ package com.example.mystuff.model
 
 import com.google.firebase.firestore.DocumentId
 
-data class Item( var nome:String? = null, var quantidade:Int? = null, @DocumentId var id:String? = null )
+data class Item (
+    val nome:String? = null,
+    val quantidade:Double? = null,
+    val comodos:Map<String, Double>? = null,
+    @DocumentId
+    var id:String? = null
+)

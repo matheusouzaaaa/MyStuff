@@ -6,10 +6,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.QuerySnapshot
 
-class ItemFSService( val usuario: Usuario ) : DataService<Item> {
+class ItemFSService( usuario: Usuario ) : DataService<Item> {
 
-    override val db = DBService.getFirestoreDB().document(usuario.id!!)
-    private val itens = db.collection("itens")
+    private val itens = DBService.getFirestoreDB().document(usuario.id!!).collection("itens")
 
     /**
      * Retorna todos os itens salvos na coleção
@@ -24,7 +23,7 @@ class ItemFSService( val usuario: Usuario ) : DataService<Item> {
     /**
      * Cria um novo item na coleção
      */
-    override fun novo( obj:Item ):Task<DocumentReference> = itens.add(hashMapOf("nome" to obj.nome, "quantidade" to obj.quantidade))
+    override fun novo( obj:Item ):Task<DocumentReference> = itens.add(obj)
 
     /**
      * Atualiza um item na coleção
@@ -35,5 +34,7 @@ class ItemFSService( val usuario: Usuario ) : DataService<Item> {
      * Deleta um item da coleção
      */
     override fun deletar( id:String ):Task<Void> = itens.document(id).delete()
+
+    // Implementar: Adição de itens a comodos
 
 }
