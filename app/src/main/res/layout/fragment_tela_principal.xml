@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="viewmodel" type="com.example.mystuff.model.InventarioViewModel" />
+        <variable name="contexto" type="android.content.Context" />
+        <variable name="tela" type="androidx.fragment.app.Fragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.TelaPrincipal">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchAgruparPorComodo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelAgrupamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/telaPrincipal_agrupamento"
+            app:layout_constraintBottom_toBottomOf="@+id/switchAgruparPorComodo"
+            app:layout_constraintStart_toEndOf="@+id/switchAgruparPorComodo"
+            app:layout_constraintTop_toTopOf="@+id/switchAgruparPorComodo" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/telaPrincipal_ordenacao_label"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            app:layout_constraintBottom_toBottomOf="@+id/labelAgrupamento"
+            app:layout_constraintEnd_toStartOf="@+id/labelOrdenacao"
+            app:layout_constraintTop_toTopOf="@+id/labelAgrupamento"
+            app:layout_constraintVertical_bias=".5"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/labelOrdenacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            tools:text="A-Z" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/layoutFABContainer"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:animateLayoutChanges="true"
+            android:animationCache="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabNovo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:contentDescription="@string/telaPrincipal_fab_hint"
+                android:focusable="true"
+                android:src="@android:drawable/ic_input_add"
+                app:backgroundTint="@color/purple_200" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:onClick="@{() -> viewmodel.logout(contexto, tela)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switchAgruparPorComodo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

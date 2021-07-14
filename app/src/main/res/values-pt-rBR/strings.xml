@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="telaPrincipal_agrupamento">Agrupar por Cômodo</string>
+    <string name="telaPrincipal_itens">Itens: $1</string>
+    <string name="telaPrincipal_ordenacao_itens">Itens</string>
+    <string name="telaPrincipal_fab_hint">Novo Item ou Cômodo</string>
+    <string name="telaPrincipal_ordenacao_label">Ordenar por</string>
+    <string name="telaLogin_msg">Você deve fazer login para usar o MyStuff</string>
+    <string name="telaLogin_btn">Cadastre-se ou faça login</string>
+</resources>

@@ -1,4 +1,13 @@
 <resources>
-    <string name="app_name">MyStuff</string>
+    <string name="app_name" translatable="false">MyStuff</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="telaPrincipal_agrupamento">Group by Room</string>
+    <string name="telaPrincipal_itens">Items: $1</string>
+    <string name="telaPrincipal_ordenacao_alfabetica" translatable="false">A-Z</string>
+    <string name="telaPrincipal_ordenacao_itens">Items</string>
+    <string name="telaPrincipal_fab_hint">New Item or Room</string>
+    <string name="telaPrincipal_ordenacao_label">Sort by</string>
+    <string name="telaLogin_msg">You must be logged in to use MyStuff</string>
+    <string name="telaLogin_btn">Sign-up or login</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

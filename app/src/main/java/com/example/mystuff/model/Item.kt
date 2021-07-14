@@ -7,7 +7,7 @@ data class Item (
     val nome:String? = null,
     val quantidadeTotal:Double? = null,
     val comodos:ArrayList<DocumentReference>,
-    val quantidades: ArrayList<Double>,
+    val quantidades: ArrayList<Int>,
     @DocumentId
     var id:String? = null
 )

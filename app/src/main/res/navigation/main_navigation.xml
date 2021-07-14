@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/telaPrincipal">
 
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.mystuff.fragments.LoginFragment"
-        android:label="fragment_login" />
+        android:id="@+id/telaLogin"
+        android:name="com.example.mystuff.fragments.TelaLogin"/>
+    <fragment
+        android:id="@+id/telaPrincipal"
+        android:name="com.example.mystuff.fragments.TelaPrincipal"
+        android:label="fragment_tela_principal"
+        tools:layout="@layout/fragment_tela_principal" >
+        <action
+            android:id="@+id/action_telaPrincipal_to_telaLogin"
+            app:destination="@id/telaLogin" />
+    </fragment>
 </navigation>

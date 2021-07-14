@@ -8,4 +8,8 @@ data class Usuario(
     val criacao:Timestamp? = null,
     @DocumentId
     val id:String? = null
-)
+){
+    override fun toString():String {
+        return "$id, $nome, $criacao"
+    }
+}
