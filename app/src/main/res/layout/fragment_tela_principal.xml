@@ -5,8 +5,6 @@
 
     <data>
         <variable name="viewmodel" type="com.example.mystuff.model.InventarioViewModel" />
-        <variable name="contexto" type="android.content.Context" />
-        <variable name="tela" type="androidx.fragment.app.Fragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

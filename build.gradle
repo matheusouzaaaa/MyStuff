@@ -4,6 +4,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        jcenter() // Para uso do FlexibleAdapter - JCenter será mantido como repositório somente leitura (https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/)
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.2"

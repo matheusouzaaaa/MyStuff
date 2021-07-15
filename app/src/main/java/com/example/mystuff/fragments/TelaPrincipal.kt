@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import androidx.navigation.navGraphViewModels
 import com.example.mystuff.R
 import com.example.mystuff.databinding.FragmentTelaPrincipalBinding
 import com.example.mystuff.model.InventarioViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 
 class TelaPrincipal : Fragment() {
@@ -25,9 +27,11 @@ class TelaPrincipal : Fragment() {
 
         _binding = FragmentTelaPrincipalBinding.inflate(layoutInflater, container, false)
 
-        binding.contexto = requireContext()
-        binding.tela = this
-        binding.viewmodel = viewModel
+        binding.apply {
+
+            viewmodel = viewModel
+
+        }
 
         return binding.root
 
