@@ -7,4 +7,5 @@
     <string name="telaPrincipal_ordenacao_label">Ordenar por</string>
     <string name="telaLogin_msg">Você deve fazer login para usar o MyStuff</string>
     <string name="telaLogin_btn">Cadastre-se ou faça login</string>
+    <string name="menuAppBar_logout">Sair</string>
 </resources>

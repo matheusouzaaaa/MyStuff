@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,10 +34,11 @@
             app:layout_constraintTop_toTopOf="@+id/switchAgruparPorComodo" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btnOrdenacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:background="@drawable/ripple"
             android:contentDescription="@string/telaPrincipal_ordenacao_label"
             android:src="@android:drawable/ic_menu_sort_by_size"
             app:layout_constraintBottom_toBottomOf="@+id/labelAgrupamento"
@@ -51,9 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/btnOrdenacao"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/btnOrdenacao"
             tools:text="A-Z" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -77,18 +78,9 @@
                 android:contentDescription="@string/telaPrincipal_fab_hint"
                 android:focusable="true"
                 android:src="@android:drawable/ic_input_add"
+                android:tint="@color/white"
                 app:backgroundTint="@color/purple_200" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:onClick="@{() -> viewmodel.logout(contexto, tela)}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switchAgruparPorComodo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

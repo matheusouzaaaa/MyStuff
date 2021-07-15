@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
+    android:label="mystuff"
     app:startDestination="@id/telaPrincipal">
 
     <fragment
         android:id="@+id/telaLogin"
-        android:name="com.example.mystuff.fragments.TelaLogin"/>
+        android:name="com.example.mystuff.fragments.TelaLogin"
+        android:label="Login" />
     <fragment
         android:id="@+id/telaPrincipal"
         android:name="com.example.mystuff.fragments.TelaPrincipal"
-        android:label="fragment_tela_principal"
-        tools:layout="@layout/fragment_tela_principal" >
+        android:label="MyStuff"
+        tools:layout="@layout/fragment_tela_principal">
         <action
             android:id="@+id/action_telaPrincipal_to_telaLogin"
             app:destination="@id/telaLogin" />

@@ -9,5 +9,6 @@
     <string name="telaPrincipal_ordenacao_label">Sort by</string>
     <string name="telaLogin_msg">You must be logged in to use MyStuff</string>
     <string name="telaLogin_btn">Sign-up or login</string>
+    <string name="menuAppBar_logout">Logout</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.mystuff.R
@@ -25,8 +27,7 @@ import com.google.firebase.ktx.Firebase
 
 class TelaLogin : Fragment() {
 
-    private val inventarioViewModel:InventarioViewModel by navGraphViewModels(R.id.telaPrincipal)
-    private var loginCancelado = false
+    private val inventarioViewModel:InventarioViewModel by activityViewModels()
 
     lateinit var _binding: LoginNoticeBinding
     val binding
@@ -44,6 +45,8 @@ class TelaLogin : Fragment() {
 
         binding.viewModel = inventarioViewModel
         binding.tela = this
+
+        (activity as AppCompatActivity).supportActionBar?.hide()
 
         return binding.root
 

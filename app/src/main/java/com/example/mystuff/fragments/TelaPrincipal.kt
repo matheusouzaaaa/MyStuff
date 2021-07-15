@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.mystuff.R
@@ -14,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class TelaPrincipal : Fragment() {
 
-    val viewModel:InventarioViewModel by navGraphViewModels(R.id.telaPrincipal)
+    val viewModel:InventarioViewModel by activityViewModels()
     lateinit var _binding:FragmentTelaPrincipalBinding
     val binding
         get() = _binding
@@ -36,6 +38,9 @@ class TelaPrincipal : Fragment() {
 
         if( FirebaseAuth.getInstance().currentUser == null )
             findNavController().navigate(R.id.action_telaPrincipal_to_telaLogin)
+
+        (activity as AppCompatActivity).supportActionBar?.show()
+
     }
 
 }
