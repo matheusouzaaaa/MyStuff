@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="telaPrincipal_agrupamento">Agrupar por Cômodo</string>
-    <string name="telaPrincipal_itens">Itens: $1</string>
+    <string name="telaPrincipal_itens">Itens: %1$d</string>
     <string name="telaPrincipal_ordenacao_itens">Itens</string>
     <string name="telaPrincipal_fab_hint">Novo Item ou Cômodo</string>
     <string name="telaPrincipal_ordenacao_label">Ordenar por</string>
-    <string name="telaLogin_msg">Você deve fazer login para usar o MyStuff</string>
+    <string name="telaLogin_aviso">Você deve fazer login para usar o MyStuff</string>
     <string name="telaLogin_btn">Cadastre-se ou faça login</string>
     <string name="menuAppBar_logout">Sair</string>
+    <string name="telaLogin_msgErro">Erro de Servidor. Tente novamente.</string>
+    <string name="telaEdicao_nome_hint">Nome</string>
+    <string name="telaEdicao_quantidade_hint">Quantidade</string>
+    <string name="telaEdicao_comodo_hint">Cômodo</string>
+    <string name="telaEdicao_editar">Editar</string>
+    <string name="telaEdicao_novo">Novo</string>
+    <string name="telaEdicao_comodo">Cômodo</string>
+    <string name="telaEdicao_quantidadeComodo_hint">Qtd. no Cômodo</string>
+    <string name="btn_salvar">Salvar</string>
+    <string name="btn_deletar">Apagar</string>
+    <string name="btn_cancelar">Cancelar</string>
 </resources>

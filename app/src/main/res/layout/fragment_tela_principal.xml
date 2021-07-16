@@ -5,6 +5,7 @@
 
     <data>
         <variable name="viewmodel" type="com.example.mystuff.model.InventarioViewModel" />
+        <variable name="principal" type="com.example.mystuff.fragments.TelaPrincipal" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

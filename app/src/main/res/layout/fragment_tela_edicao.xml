@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="viewModel" type="com.example.mystuff.model.InventarioViewModel" />
+        <variable name="edicao" type="com.example.mystuff.fragments.TelaEdicao" />
+        <variable name="stringAcao" type="String" />
+        <variable name="stringObjeto" type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.TelaEdicao" >
+
+        <TextView
+            android:id="@+id/labelTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Título"
+            android:text="@{@string/telaEdicao_titulo(stringAcao, stringObjeto)}"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtiLayoutNome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/labelTitulo"
+            app:layout_constraintTop_toBottomOf="@+id/labelTitulo">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtiNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/telaEdicao_nome_hint"
+                android:inputType="textShortMessage|text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtiLayoutQuantidade"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtiLayoutNome"
+            app:layout_constraintStart_toStartOf="@+id/txtiLayoutNome"
+            app:layout_constraintTop_toBottomOf="@+id/txtiLayoutNome">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtiQuantidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/telaEdicao_quantidade_hint"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spnComodo"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtiLayoutQuantidadeComodo"
+            app:layout_constraintStart_toStartOf="@+id/txtiLayoutQuantidade"
+            app:layout_constraintTop_toTopOf="@+id/txtiLayoutQuantidadeComodo" />
+
+        <Button
+            android:id="@+id/btnSalvar"
+            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/btn_salvar"
+            android:textColor="@color/green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spnComodo" />
+
+        <Button
+            android:id="@+id/btnDeletar"
+            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/btn_deletar"
+            android:textColor="@color/red"
+            app:layout_constraintBottom_toBottomOf="@+id/btnSalvar"
+            app:layout_constraintEnd_toStartOf="@+id/btnSalvar"
+            app:layout_constraintTop_toTopOf="@+id/btnSalvar"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/btnCancelar"
+            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:onClick="@{edicao::cancelar}"
+            android:text="@string/btn_cancelar"
+            android:textColor="@color/purple_200"
+            app:layout_constraintBottom_toBottomOf="@+id/btnSalvar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnSalvar"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtiLayoutQuantidadeComodo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtiLayoutQuantidade"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/spnComodo"
+            app:layout_constraintTop_toBottomOf="@+id/txtiLayoutQuantidade">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtiQuantidadeComodo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/telaEdicao_quantidadeComodo_hint" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

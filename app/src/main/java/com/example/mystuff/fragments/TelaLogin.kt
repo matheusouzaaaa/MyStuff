@@ -13,13 +13,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.example.mystuff.R
-import com.example.mystuff.databinding.LoginNoticeBinding
+import com.example.mystuff.databinding.AvisoLoginBinding
 import com.example.mystuff.model.InventarioViewModel
 import com.example.mystuff.model.Usuario
 import com.example.mystuff.services.UsuarioFSService
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -29,7 +30,7 @@ class TelaLogin : Fragment() {
 
     private val inventarioViewModel:InventarioViewModel by activityViewModels()
 
-    lateinit var _binding: LoginNoticeBinding
+    lateinit var _binding: AvisoLoginBinding
     val binding
         get() = _binding
 
@@ -41,10 +42,10 @@ class TelaLogin : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
 
-        _binding = LoginNoticeBinding.inflate(layoutInflater, container, false)
+        _binding = AvisoLoginBinding.inflate(layoutInflater, container, false)
 
         binding.viewModel = inventarioViewModel
-        binding.tela = this
+        binding.avisoLogin = this
 
         (activity as AppCompatActivity).supportActionBar?.hide()
 
@@ -52,7 +53,7 @@ class TelaLogin : Fragment() {
 
     }
 
-    fun verificarLogin(){
+    fun verificarLogin( v:View ){
 
         if ( Firebase.auth.currentUser != null) {
 
@@ -99,7 +100,9 @@ class TelaLogin : Fragment() {
                                     .addOnSuccessListener {
                                         voltarParaTelaPrincipal()
                                     }
-                                    .addOnFailureListener { /*Mensagem de Erro ou alternativa*/ }
+                                    .addOnFailureListener {
+                                        mostrarSnackErro()
+                                    }
 
                             } else {
 
@@ -114,7 +117,9 @@ class TelaLogin : Fragment() {
 
 
                     }
-                    .addOnFailureListener {}
+                    .addOnFailureListener {
+                        mostrarSnackErro()
+                    }
 
             }
 
@@ -126,6 +131,10 @@ class TelaLogin : Fragment() {
 
     private fun voltarParaTelaPrincipal(){
         findNavController().popBackStack()
+    }
+
+    private fun mostrarSnackErro(){
+        Snackbar.make(binding.root, R.string.telaLogin_msgErro, Snackbar.LENGTH_SHORT ).setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE).show()
     }
 
 }

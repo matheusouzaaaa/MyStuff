@@ -5,7 +5,7 @@
 
     <data>
         <variable name="viewModel" type="com.example.mystuff.model.InventarioViewModel" />
-        <variable name="tela" type="com.example.mystuff.fragments.TelaLogin" />
+        <variable name="avisoLogin" type="com.example.mystuff.fragments.TelaLogin" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,8 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:text="@string/telaLogin_msg"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:text="@string/telaLogin_aviso"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:attr/textColorPrimaryDisableOnly" />
 
             <Button
                 android:id="@+id/btnLogin"
@@ -38,7 +39,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:onClick="@{() -> tela.verificarLogin()}"
+                android:background="@color/purple_200"
+                android:padding="16dp"
+                android:onClick="@{avisoLogin::verificarLogin}"
                 android:text="@string/telaLogin_btn" />
 
         </LinearLayout>

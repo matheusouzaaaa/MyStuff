@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.acao_logout -> {
-            viewModel.logout(binding.navegacaoPrincipal.findNavController())
+            viewModel.logout()
             true
         }
         else -> {

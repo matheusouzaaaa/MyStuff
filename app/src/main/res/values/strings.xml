@@ -1,14 +1,25 @@
 <resources>
     <string name="app_name" translatable="false">MyStuff</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="telaPrincipal_agrupamento">Group by Room</string>
-    <string name="telaPrincipal_itens">Items: $1</string>
+    <string name="telaPrincipal_itens">Items: %1$d</string>
     <string name="telaPrincipal_ordenacao_alfabetica" translatable="false">A-Z</string>
     <string name="telaPrincipal_ordenacao_itens">Items</string>
     <string name="telaPrincipal_fab_hint">New Item or Room</string>
     <string name="telaPrincipal_ordenacao_label">Sort by</string>
-    <string name="telaLogin_msg">You must be logged in to use MyStuff</string>
+    <string name="telaLogin_aviso">You must be logged in to use MyStuff</string>
     <string name="telaLogin_btn">Sign-up or login</string>
     <string name="menuAppBar_logout">Logout</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="telaLogin_msgErro">Server Error. Try again.</string>
+    <string name="telaEdicao_nome_hint">Name</string>
+    <string name="telaEdicao_quantidade_hint">Number of Items</string>
+    <string name="telaEdicao_comodo_hint">Room</string>
+    <string name="telaEdicao_titulo" translatable="false">%1$s %2$s</string>
+    <string name="telaEdicao_editar">Edit</string>
+    <string name="telaEdicao_novo">New</string>
+    <string name="telaEdicao_item" translatable="false">Item</string>
+    <string name="telaEdicao_comodo">Room</string>
+    <string name="telaEdicao_quantidadeComodo_hint">Items in the Room</string>
+    <string name="btn_salvar">Save</string>
+    <string name="btn_deletar">Delete</string>
+    <string name="btn_cancelar">Cancel</string>
 </resources>
