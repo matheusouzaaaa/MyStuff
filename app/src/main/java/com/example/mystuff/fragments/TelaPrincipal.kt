@@ -11,16 +11,21 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mystuff.R
 import com.example.mystuff.databinding.FragmentTelaPrincipalBinding
+import com.example.mystuff.model.FlexibleItem
 import com.example.mystuff.model.InventarioViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.mystuff.model.Item
+import com.example.mystuff.model.Usuario
+import com.example.mystuff.services.ComodoFSService
+import com.example.mystuff.services.ItemFSService
 import com.google.firebase.auth.FirebaseAuth
+import eu.davidea.flexibleadapter.FlexibleAdapter
 
 class TelaPrincipal : Fragment(), PopupMenu.OnMenuItemClickListener {
 
-    val viewModel:InventarioViewModel by activityViewModels()
+    val inventarioViewModel:InventarioViewModel by activityViewModels()
     lateinit var _binding:FragmentTelaPrincipalBinding
     val binding
         get() = _binding
@@ -29,14 +34,14 @@ class TelaPrincipal : Fragment(), PopupMenu.OnMenuItemClickListener {
 
         _binding = FragmentTelaPrincipalBinding.inflate(layoutInflater, container, false)
 
-        binding.apply {
-
-            viewmodel = viewModel
-            fabNovo.setOnClickListener {
-                mostrarMenu(it)
+        if( FirebaseAuth.getInstance().currentUser == null )
+            findNavController().navigate(R.id.action_telaPrincipal_to_telaLogin)
+        else
+            inventarioViewModel.apply {
+                usuarioAtual = Usuario(FirebaseAuth.getInstance().currentUser?.displayName, null, FirebaseAuth.getInstance().currentUser?.uid)
+//                itemService = ItemFSService(usuarioAtual!!)
+//                comodoService = ComodoFSService(usuarioAtual!!)
             }
-
-        }
 
         return binding.root
 
@@ -45,16 +50,56 @@ class TelaPrincipal : Fragment(), PopupMenu.OnMenuItemClickListener {
     override fun onViewCreated( view:View, savedInstanceState:Bundle? ) {
         super.onViewCreated(view, savedInstanceState)
 
-        if( FirebaseAuth.getInstance().currentUser == null )
-            findNavController().navigate(R.id.action_telaPrincipal_to_telaLogin)
+
+        binding.apply {
+
+            viewmodel = inventarioViewModel
+            fabNovo.setOnClickListener {
+                mostrarMenu(it)
+            }
+
+            when(inventarioViewModel.ordenacao){
+                InventarioViewModel.Ordenacao.alfabetica -> rbtnOrdenacaoAlfabetica.isChecked = true
+                InventarioViewModel.Ordenacao.numerica -> rbtnOrdenacaoNumerica.isChecked = true
+            }
+
+            /*
+            inventarioViewModel.itemService.retornarTodos()
+                .addOnSuccessListener {
+
+                    var itens = ArrayList<FlexibleItem>()
+
+                    it.toObjects(Item::class.java).forEach {
+                        itens.add(FlexibleItem(it))
+                    }
+
+                    rclListaPrincipal.apply {
+                        layoutManager = LinearLayoutManager(this@TelaPrincipal.requireContext())
+                        setHasFixedSize(true)
+                        adapter = FlexibleAdapter(itens)
+                    }
+
+                }
+                */
+
+        }
 
         (activity as AppCompatActivity).supportActionBar?.show()
 
     }
 
-    private fun navegarParaEdicao(){
-        binding.fabNovo.hide()
-        findNavController().navigate(R.id.action_telaPrincipal_to_telaEdicao)
+    fun configurarAgrupamento( v:View ){
+        if ((v as SwitchCompat).isChecked)
+            inventarioViewModel.agrupamento = InventarioViewModel.Agrupamento.porComodo
+        else
+            inventarioViewModel.agrupamento = InventarioViewModel.Agrupamento.porItem
+    }
+
+    fun configurarOrdenacao( v:View ){
+        when(v.id){
+            R.id.rbtnOrdenacaoAlfabetica -> inventarioViewModel.ordenacao = InventarioViewModel.Ordenacao.alfabetica
+            R.id.rbtnOrdenacaoNumerica -> inventarioViewModel.ordenacao = InventarioViewModel.Ordenacao.numerica
+        }
     }
 
     private fun mostrarMenu( v:View ) {
@@ -66,28 +111,25 @@ class TelaPrincipal : Fragment(), PopupMenu.OnMenuItemClickListener {
         }
     }
 
-    /**
-     * This method will be invoked when a menu item is clicked if the item
-     * itself did not already handle the event.
-     *
-     * @param item the menu item that was clicked
-     * @return `true` if the event was handled, `false`
-     * otherwise
-     */
     override fun onMenuItemClick( item:MenuItem ):Boolean {
         return when (item.itemId) {
             R.id.acao_novo_item -> {
-                viewModel.acao = InventarioViewModel.Acao.novoItem
+                inventarioViewModel.acao = InventarioViewModel.Acao.novoItem
                 navegarParaEdicao()
                 true
             }
             R.id.acao_novo_comodo -> {
-                viewModel.acao = InventarioViewModel.Acao.novoComodo
+                inventarioViewModel.acao = InventarioViewModel.Acao.novoComodo
                 navegarParaEdicao()
                 true
             }
             else -> false
         }
+    }
+
+    private fun navegarParaEdicao(){
+        binding.fabNovo.hide()
+        findNavController().navigate(R.id.action_telaPrincipal_to_telaEdicao)
     }
 
 }

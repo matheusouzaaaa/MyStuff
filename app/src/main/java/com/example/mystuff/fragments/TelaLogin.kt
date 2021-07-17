@@ -16,6 +16,8 @@ import com.example.mystuff.R
 import com.example.mystuff.databinding.AvisoLoginBinding
 import com.example.mystuff.model.InventarioViewModel
 import com.example.mystuff.model.Usuario
+import com.example.mystuff.services.ComodoFSService
+import com.example.mystuff.services.ItemFSService
 import com.example.mystuff.services.UsuarioFSService
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -42,6 +44,8 @@ class TelaLogin : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View {
 
+        Log.i("MyStuff", "Tela de Login")
+
         _binding = AvisoLoginBinding.inflate(layoutInflater, container, false)
 
         binding.viewModel = inventarioViewModel
@@ -55,10 +59,13 @@ class TelaLogin : Fragment() {
 
     fun verificarLogin( v:View ){
 
-        if ( Firebase.auth.currentUser != null) {
+        val usuarioFB = Firebase.auth.currentUser
+
+        if ( usuarioFB != null) {
 
             Log.i("MyStuff", "1 - Usuário já logado no Firebase Auth")
 
+            configurarViewModel(Usuario(usuarioFB.displayName, Timestamp.now(), usuarioFB.uid))
             voltarParaTelaPrincipal()
 
         } else {
@@ -85,9 +92,7 @@ class TelaLogin : Fragment() {
 
             FirebaseAuth.getInstance().currentUser.let { usuarioAuth ->
 
-                val servico = UsuarioFSService()
-
-                servico.retornarUm(usuarioAuth!!.uid)
+                UsuarioFSService().retornarUm(usuarioAuth!!.uid)
                     .addOnSuccessListener {
 
                         it.toObject(Usuario::class.java).let { usuarioFirestore ->
@@ -96,8 +101,11 @@ class TelaLogin : Fragment() {
 
                                 Log.i("MyStuff", "5 - Novo usuário")
 
-                                servico.novo(Usuario(usuarioAuth.displayName, Timestamp.now(), usuarioAuth.uid))
+                                val novoUsuario = Usuario(usuarioAuth.displayName, Timestamp.now(), usuarioAuth.uid)
+
+                                UsuarioFSService().novo(novoUsuario)
                                     .addOnSuccessListener {
+                                        configurarViewModel(novoUsuario)
                                         voltarParaTelaPrincipal()
                                     }
                                     .addOnFailureListener {
@@ -108,7 +116,8 @@ class TelaLogin : Fragment() {
 
                                 Log.i("MyStuff", "4 - Usuário já cadastrado no Firestore, $usuarioFirestore")
 
-                                inventarioViewModel.usuarioAtual = usuarioFirestore
+                                configurarViewModel(usuarioFirestore)
+
                                 voltarParaTelaPrincipal()
 
                             }
@@ -127,6 +136,14 @@ class TelaLogin : Fragment() {
             Log.i("MyStuff", "5 - Login Cancelado")
         }
 
+    }
+
+    private fun configurarViewModel( u:Usuario ){
+        inventarioViewModel.apply {
+            usuarioAtual = u
+//            itemService = ItemFSService(usuarioAtual!!)
+//            comodoService = ComodoFSService(usuarioAtual!!)
+        }
     }
 
     private fun voltarParaTelaPrincipal(){

@@ -22,4 +22,5 @@
     <string name="btn_salvar">Save</string>
     <string name="btn_deletar">Delete</string>
     <string name="btn_cancelar">Cancel</string>
+    <string name="telaPrincipal_quantidade">Amount: %1$d</string>
 </resources>

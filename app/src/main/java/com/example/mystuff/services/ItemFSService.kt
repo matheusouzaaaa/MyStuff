@@ -6,7 +6,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.QuerySnapshot
 
-class ItemFSService( val usuario: Usuario ) : DataService<Item> {
+class ItemFSService( usuario: Usuario ) : DataService<Item> {
 
     private val itens = DB.firestore.document(usuario.id!!).collection("itens")
 

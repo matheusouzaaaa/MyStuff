@@ -13,49 +13,6 @@
         android:layout_height="match_parent"
         tools:context=".fragments.TelaPrincipal">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switchAgruparPorComodo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/labelAgrupamento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/telaPrincipal_agrupamento"
-            app:layout_constraintBottom_toBottomOf="@+id/switchAgruparPorComodo"
-            app:layout_constraintStart_toEndOf="@+id/switchAgruparPorComodo"
-            app:layout_constraintTop_toTopOf="@+id/switchAgruparPorComodo" />
-
-        <ImageView
-            android:id="@+id/btnOrdenacao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/ripple"
-            android:contentDescription="@string/telaPrincipal_ordenacao_label"
-            android:src="@android:drawable/ic_menu_sort_by_size"
-            app:layout_constraintBottom_toBottomOf="@+id/labelAgrupamento"
-            app:layout_constraintEnd_toStartOf="@+id/labelOrdenacao"
-            app:layout_constraintTop_toTopOf="@+id/labelAgrupamento"
-            app:layout_constraintVertical_bias=".5"
-            app:tint="@color/black" />
-
-        <TextView
-            android:id="@+id/labelOrdenacao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/btnOrdenacao"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnOrdenacao"
-            tools:text="A-Z" />
-
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/layoutFABContainer"
             android:layout_width="match_parent"
@@ -80,6 +37,67 @@
                 android:tint="@color/white"
                 app:backgroundTint="@color/purple_200" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchAgruparPorComodo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{principal::configurarAgrupamento}" />
+
+        <TextView
+            android:id="@+id/labelAgrupamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/telaPrincipal_agrupamento"
+            app:layout_constraintBottom_toBottomOf="@+id/switchAgruparPorComodo"
+            app:layout_constraintStart_toEndOf="@+id/switchAgruparPorComodo"
+            app:layout_constraintTop_toTopOf="@+id/switchAgruparPorComodo" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rclListaPrincipal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switchAgruparPorComodo"
+            app:layout_constraintVertical_bias="0.0"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_lista_principal_item" />
+
+        <RadioGroup
+            android:id="@+id/grupoRadioOrdenacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/switchAgruparPorComodo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/switchAgruparPorComodo">
+
+            <RadioButton
+                android:id="@+id/rbtnOrdenacaoAlfabetica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:onClick="@{principal::configurarOrdenacao}"
+                android:text="@string/telaPrincipal_ordenacao_alfabetica"
+                android:textColor="@android:color/tertiary_text_light" />
+
+            <RadioButton
+                android:id="@+id/rbtnOrdenacaoNumerica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{principal::configurarOrdenacao}"
+                android:text="@string/telaPrincipal_ordenacao_itens"
+                android:textColor="@android:color/tertiary_text_light" />
+        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

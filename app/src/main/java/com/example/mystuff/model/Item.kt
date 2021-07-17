@@ -6,8 +6,8 @@ import com.google.firebase.firestore.DocumentReference
 data class Item (
     val nome:String? = null,
     val quantidadeTotal:Double? = null,
-    val comodos:ArrayList<DocumentReference>,
-    val quantidades: ArrayList<Int>,
+    val comodos:ArrayList<DocumentReference>? = null,
+    val quantidades: ArrayList<Int>? = null,
     @DocumentId
     var id:String? = null
 )

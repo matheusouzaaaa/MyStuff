@@ -19,4 +19,5 @@
     <string name="btn_salvar">Salvar</string>
     <string name="btn_deletar">Apagar</string>
     <string name="btn_cancelar">Cancelar</string>
+    <string name="telaPrincipal_quantidade">Quantidade: %1$d</string>
 </resources>

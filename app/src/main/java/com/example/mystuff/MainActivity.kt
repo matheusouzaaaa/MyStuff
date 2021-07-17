@@ -2,21 +2,18 @@ package com.example.mystuff
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavHostController
 import androidx.navigation.findNavController
-import androidx.navigation.navGraphViewModels
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.example.mystuff.databinding.ActivityMainBinding
 import com.example.mystuff.model.InventarioViewModel
+import com.example.mystuff.services.ComodoFSService
+import com.example.mystuff.services.ItemFSService
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel:InventarioViewModel by viewModels()
+    private val inventarioViewModel:InventarioViewModel by viewModels()
     private lateinit var _binding:ActivityMainBinding
     val binding get() = _binding
 
@@ -34,7 +31,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.acao_logout -> {
-            viewModel.logout()
+            inventarioViewModel.logout()
+            binding.navegacaoPrincipal.findNavController().navigate(R.id.action_global_telaLogin)
             true
         }
         else -> {

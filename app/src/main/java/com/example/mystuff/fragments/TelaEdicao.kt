@@ -57,8 +57,6 @@ class TelaEdicao : Fragment() {
         inventarioViewModel.apply {
 
             acaoString = null
-            itemSelecionado = null
-            comodoSelecionado = null
 
         }
 
